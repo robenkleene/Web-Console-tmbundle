@@ -5,10 +5,20 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>#!/bin/sh
+	<string>#!/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby
 
-PATH=$HOME/.rbenv/shims:$PATH
-wcmarkdown "$TM_FILEPATH"</string>
+require File.join(ENV['TM_BUNDLE_SUPPORT'], 'bundle/bundler/setup')
+require 'webconsole'
+
+file_path = ENV["TM_FILEPATH"]
+if !file_path
+  puts "No file path found (save the file first)."
+  exit 1
+end
+
+directory = File.dirname(file_path) # Directory isn't really necessary but running a plugin must specify a directory
+
+WebConsole::run_plugin("Markdown", directory, [file_path])</string>
 	<key>input</key>
 	<string>none</string>
 	<key>inputFormat</key>
