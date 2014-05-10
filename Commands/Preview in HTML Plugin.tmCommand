@@ -12,8 +12,7 @@ require 'webconsole'
 
 file_path = ENV["TM_FILEPATH"]
 if !file_path
-  puts "No file path found (save the file first)."
-  exit 1
+  abort("No file path found (save the file first).")
 end
 
 directory = File.dirname(file_path) # Directory isn't really necessary but running a plugin must specify a directory
