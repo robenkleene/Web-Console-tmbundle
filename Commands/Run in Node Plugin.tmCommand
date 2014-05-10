@@ -5,10 +5,30 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>#!/bin/sh
+	<string>#!/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby
 
-PATH=$HOME/.rbenv/shims:$PATH
-wcnode</string>
+require File.join(ENV['TM_BUNDLE_SUPPORT'], 'bundle/bundler/setup')
+require 'webconsole'
+
+file_path = ENV["TM_FILEPATH"]
+if file_path
+  directory = File.dirname(file_path)
+else
+  directory = Dir.pwd
+end
+
+text = STDIN.read
+text.gsub!("\n", "\uFF00") # \uFF00 is the unicode character Coffee uses for new lines, it's used here just to consolidate code into one line
+text = text + "\n"
+
+PLUGIN_NAME = "Node"
+
+# Create a window running the plugin if it doesn't exist
+if !WebConsole::plugin_has_windows(PLUGIN_NAME)
+  WebConsole::run_plugin(PLUGIN_NAME, directory)
+end
+
+WebConsole::plugin_read_from_standard_input(PLUGIN_NAME, text)</string>
 	<key>input</key>
 	<string>selection</string>
 	<key>inputFormat</key>
