@@ -23,7 +23,7 @@ WebConsole::run_plugin("HTML", directory, [file_path])</string>
 	<key>inputFormat</key>
 	<string>text</string>
 	<key>keyEquivalent</key>
-	<string>^@P</string>
+	<string>^~@p</string>
 	<key>name</key>
 	<string>Preview in HTML Plugin</string>
 	<key>outputCaret</key>

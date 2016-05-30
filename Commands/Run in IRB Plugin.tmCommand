@@ -35,7 +35,7 @@ window.read_from_standard_input(text)</string>
 	<key>inputFormat</key>
 	<string>text</string>
 	<key>keyEquivalent</key>
-	<string>^@R</string>
+	<string>^~@p</string>
 	<key>name</key>
 	<string>Run in IRB Plugin</string>
 	<key>outputCaret</key>
